@@ -87,20 +87,25 @@ Aqui foram apresentados os 8 tipos primitivos do Java:
 ### Estrutura IF
 
 - Executa o código caso a condição seja verdadeira
-  - Sintaxe: `if (condicao) {
-    // código a ser executado
-}`
+  - Sintaxe: 
+      ```
+      if (condicao) {
+        // código a ser executado
+        }
+      ```
 
 ### Estrutura IF-ELSE
 
 - Executa um bloco de código caso a condição seja verdadeira e outro caso ela seja falsa 
   - Sintaxe: 
-    - `if (condicao) {
-      // código executado se for VERDADEIRA
-} `
-    - `else {
-      // código executado se for FALSA
-}`
+      ```
+        if (condicao) {
+              // código executado se for VERDADEIRA
+        } 
+        else {
+              // código executado se for FALSA
+        }
+      ```
 
 ### Operador Ternário 
 
@@ -111,12 +116,11 @@ Aqui foram apresentados os 8 tipos primitivos do Java:
 
 - Ele vai avaliar mais de duas condições e retornar a primeira verdadeira
   - Sintaxe: 
-    - `if (condicao1) {
-      // código executado se condicao1 for verdadeira
-}` 
-    - ` else if (condicao2) {
-      // código executado se condicao2 for verdadeira
-}` 
-    - `else {
-      // código executado se nenhuma das condições anteriores for verdadeira
-}`
+       ``` 
+      if (condicao1) {
+           código executado se condicao1 for verdadeira
+      } else if (condicao2) {
+          // código executado se condicao2 for verdadeira
+      } else {
+          // código executado se nenhuma das condições anteriores for verdadeira}
+      ```
