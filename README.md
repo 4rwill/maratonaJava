@@ -2,7 +2,7 @@
 Nesse repositório eu busco documentar meu aprendizado e evolução durante minha rotina de estudos da linguagem Java.
 
 Estou usando como meio de estudo o curso online de Java disponibilizado pelo canal [DevDojo](https://youtube.com/playlist?list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW&si=6YcxOOm5Ft0dyOFG).
-
+****
 ## Aula 01 (Compilação Java)
 Essa aula apresentou conceitos básicos da linguagem, principalmente como funcionava sua compilação.
 
@@ -88,7 +88,7 @@ Aqui foram apresentados os 8 tipos primitivos do Java:
 
 - Executa o código caso a condição seja verdadeira
   - Sintaxe: 
-      ```
+      ```java
       if (condicao) {
         // código a ser executado
         }
@@ -98,7 +98,7 @@ Aqui foram apresentados os 8 tipos primitivos do Java:
 
 - Executa um bloco de código caso a condição seja verdadeira e outro caso ela seja falsa 
   - Sintaxe: 
-      ```
+      ```java
         if (condicao) {
               // código executado se for VERDADEIRA
         } 
@@ -116,7 +116,7 @@ Aqui foram apresentados os 8 tipos primitivos do Java:
 
 - Ele vai avaliar mais de duas condições e retornar a primeira verdadeira
   - Sintaxe: 
-       ``` 
+       ``` java
       if (condicao1) {
            código executado se condicao1 for verdadeira
       } else if (condicao2) {
@@ -124,3 +124,155 @@ Aqui foram apresentados os 8 tipos primitivos do Java:
       } else {
           // código executado se nenhuma das condições anteriores for verdadeira}
       ```
+### Estrutura Switch
+
+O `switch` é uma alternativa para simplificar condições encadeadas (como `if-else`), especialmente quando se compara **uma única variável** contra múltiplos valores.
+
+### **Sintaxe Básica**
+```java
+switch (variável) {
+    case valor1:
+        // Código se variável == valor1
+        break;
+    case valor2:
+        // Código se variável == valor2
+        break;
+    default:
+        // Código se nenhum case for atendido
+}
+```
+## Aula 06 (Estruturas de Repetição)
+
+### Estrutura While
+- Executa um bloco de código enquanto uma condição for verdadeira.
+- **Uso ideal:** Quando não se sabe quantas iterações serão necessárias (ex.: ler entradas até que o usuário digite "sair").
+- **Cuidado:** Condições mal formuladas podem causar loops infinitos!
+#### **Sintaxe Básica**
+```java
+int contador = 0;
+while (contador < 5) {
+    System.out.println("Contagem: " + contador);
+    contador++;
+}
+```
+
+### Estrutura Do-While
+- Similar ao while, mas garante pelo menos uma execução (a condição é verificada no final).
+- Uso ideal: Menus interativos ou validação de entrada.
+
+#### **Sintaxe Básica**
+```java
+int numero;
+do {
+    System.out.println("Digite um número positivo:");
+    numero = scanner.nextInt();
+} while (numero <= 0);
+```
+
+### Estrutura For
+- Estrutura compacta para loops com contador controlado.
+- Componentes:
+  - Inicialização: int i = 0 (executa uma vez).
+
+  -  Condição: i < 10 (verificada a cada iteração).
+
+  -  Incremento: i++ (executa após cada ciclo).
+- Uso ideal: Iterações com número definido (ex.: percorrer arrays).
+
+#### **Sintaxe Básica**
+```java
+for (int i = 0; i < 10; i++) {
+    System.out.println("Número: " + i);
+}
+```
+
+### Estrutura Foreach
+- Simplifica a iteração em coleções (arrays, listas, etc.).
+- Vantagem: Elimina a necessidade de contadores manual.
+- Limitação: Não permite modificar a coleção durante a iteração.
+
+#### **Sintaxe Básica**
+```java
+String[] frutas = {"Maçã", "Banana", "Pêra"};
+for (String fruta : frutas) {
+    System.out.println("Fruta: " + fruta);
+}
+```
+
+### ⚠️ Dicas Importantes
+
+- Evite loops infinitos: Sempre atualize a variável de condição!
+
+- break e continue: Use para sair prematuramente (break) ou pular iterações (continue).
+
+#### **Sintaxe Básica**
+```java
+for (int i = 0; i < 10; i++) {
+    if (i == 5) break; // Sai do loop quando i for 5
+    if (i % 2 == 0) continue; // Pula números pares
+    System.out.println("Ímpar: " + i);
+}
+```
+
+## Aula 07 e 08 (Arrays e Arrays Multidimensionais)
+- Estruturas para armazenar múltiplos valores do mesmo tipo em uma única variável.
+
+### 1. Declaração e Inicialização
+```java
+// Forma 1: Declaração + tamanho  
+int[] numeros = new int[5]; // [0, 0, 0, 0, 0]  
+
+// Forma 2: Declaração com valores iniciais  
+String[] frutas = {"Maçã", "Banana", "Pêra"};  
+```
+- Tamanho fixo: Definido na criação e não pode ser alterado.
+
+- Valores padrão:
+
+  - 0 para números.
+
+  - null para objetos.
+
+### 2. Acesso e Modificação
+
+````java
+numeros[0] = 10; // Atribui valor à posição 0  
+System.out.println(frutas[1]); // Imprime "Banana"  
+````
+- Índices: Começam em 0.
+
+- Erro comum: ArrayIndexOutOfBoundsException (tentar acessar índice inválido).
+
+### 3. Percorrendo Arrays
+
+#### Com for tradicional
+````java
+  for (int i = 0; i < numeros.length; i++) {
+        System.out.println("Posição " + i + ": " + numeros[i]);  
+}  
+````
+
+#### Com foreach
+````java
+for (String fruta : frutas) {  
+    System.out.println(fruta);  
+}  
+````
+- .length: Propriedade que retorna o tamanho do array.
+
+### 4. Arrays Multidimensionais
+
+````java
+// Matriz 2x3  
+int[][] matriz = {  
+    {1, 2, 3},  
+    {4, 5, 6}  
+};  
+System.out.println(matriz[1][2]); // Imprime 6  
+````
+- Uso comum: Tabelas, grids ou estruturas com linhas/colunas.
+
+
+
+
+
