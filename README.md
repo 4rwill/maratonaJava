@@ -8,7 +8,7 @@ Essa aula apresentou conceitos básicos da linguagem, principalmente como funcio
 
 ![img.png](img.png)
 
-## Aula 02 (Tipos Primitivos)
+## Aula 02 e 03 (Tipos Primitivos)
  Em Java os tipos primitivos são os dados básicos não orientados a objetos e armazenados diretamente na memória, utilizados em operações aritméticas e lógicas. 
  
 Aqui foram apresentados os 8 tipos primitivos do Java:
