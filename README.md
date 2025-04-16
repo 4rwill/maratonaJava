@@ -275,9 +275,46 @@ System.out.println(matriz[1][2]); // Imprime 6
 
 # Programação Orientada à Objetos (POO)
 
-## Classes
+## Classes e Métodos
+-  **Classes(dados)**: são meio que um molde que define caractéristicas de um objeto (ex: cor, nome, idade) 
+- **Métodos(ações)**: são as funções que um objeto pode realizar (ex: acelerar, imprimir)
+````java
+public class Carro {  
+    // Atributos (propriedades)  
+    String modelo;  
+    int ano;  
+    String cor;  
 
+    // Método (ação)  
+    void acelerar() {  
+        System.out.println("Acelerando o " + modelo + "!");  
+    }  
+}
+````
+### Como instanciar classes
+- Instanciar significa criar um objeto a partir de uma classe. É como pegar a "receita" (a classe) e usar ela para fazer um "bolo" (o objeto).
 
+````java
+NomeDaClasse nomeDoObjeto = new NomeDaClasse();
+````
+
+### Tipos de métodos
+
+#### Sem retorno (void):
+- Métodos como esse não retornam um valor, geralmente são usados para imprimir algo.
+````java
+void dizerOla() {  
+    System.out.println("Olá, mundo!");  
+}  
+````
+
+#### Com retorno:
+- Dessa forma o método retorna o valor resultante, é imporante lembrar que **retornar** é diferente de **imprimir**.
+````java
+int somar(int a, int b) {  
+    return a + b;  
+}  
+````
 
 
 
