@@ -315,6 +315,67 @@ int somar(int a, int b) {
     return a + b;  
 }  
 ````
+## Getters e Setters 
+- Os métodos getters e setters são usados para controlar o acesso aos atributos de uma classe, seguindo o princípio do encapsulamento (um dos pilares da POO).
+
+### Por que não usar atributos públicos?
+- Forma errada❌ :
+````java
+public class Pessoa {  
+    public String nome; // Risco: Qualquer um pode modificar diretamente!  
+}  
+
+// Uso perigoso:  
+Pessoa p = new Pessoa();  
+p.nome = ""; // Nome vazio? Isso não deveria ser permitido! 
+````
+
+- Solução com Getters and Setters✅:
+````java
+public class Pessoa {  
+    private String nome; // Atributo PRIVADO (só a própria classe acessa)  
+
+    // Getter (obter valor)  
+    public String getNome() {  
+        return this.nome;  
+    }  
+
+    // Setter (atribuir valor)  
+    public void setNome(String nome) {  
+        if (nome != null && !nome.isEmpty()) { // Validação!  
+            this.nome = nome;  
+        } else {  
+            System.out.println("Nome inválido!");  
+        }  
+    }  
+}  
+
+````
+
+### Como usar getters/setters:
+````java
+public class Main {  
+    public static void main(String[] args) {  
+        Pessoa pessoa = new Pessoa();  
+
+        pessoa.setNome("João"); // Válido  
+        System.out.println(pessoa.getNome()); // "João"  
+
+        pessoa.setNome(""); // Inválido → "Nome inválido!"  
+    }  
+}  
+````
+### Padrão de Nomenclatura
+- Getter: get + nome do atributo (ex.: getNome()).
+
+- Setter: set + nome do atributo (ex.: setNome(String nome)).
+
+- Para booleanos, use is em vez de get:
+````java
+public boolean isAtivo() {  
+    return this.ativo;  
+}  
+````
 
 
 
