@@ -1,6 +1,6 @@
-package academy.devdojo.maratonajava.poo.metodos.test;
+package academy.devdojo.maratonajava.poo.metodos.introducao.test;
 
-import academy.devdojo.maratonajava.poo.metodos.dominio.Funcionario;
+import academy.devdojo.maratonajava.poo.metodos.introducao.dominio.Funcionario;
 
 public class FuncionarioTest01 {
     public static void main(String[] args) {

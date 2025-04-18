@@ -377,6 +377,89 @@ public boolean isAtivo() {
 }  
 ````
 
+## Sobrecarga de métodos
+- A sobrecarga de métodos permite que uma classe tenha vários métodos com o mesmo nome, mas com parâmetros diferentes
 
+### Regras da Sobrecarga
+
+- Mesmo nome para os métodos.
+
+- Lista de parâmetros diferentes (pode variar em: quantidade, tipo ou ordem).
+
+- O retorno não importa (pode ser igual ou diferente).
+
+### Exemplo de métodos sobrecarregados:
+
+````java
+public void init(String nome, String tipo, int episodios) {  
+    this.nome = nome;  
+    this.tipo = tipo;  
+    this.episodios = episodios;  
+}  
+
+// Sobrecarga: Adiciona parâmetro "genero"  
+public void init(String nome, String tipo, int episodios, String genero) {  
+    this.init(nome, tipo, episodios); // Reaproveita o init anterior  
+    this.genero = genero;  
+}  
+````
+#### Sendo utilizados na prática:
+````java
+Anime anime1 = new Anime();  
+anime1.init("Naruto", "Anime", 220); // Chama o init de 3 parâmetros  
+
+Anime anime2 = new Anime();  
+anime2.init("Attack on Titan", "Anime", 75, "Ação"); // Chama o init de 4 parâmetros  
+````
+
+### Por que é importante utilizar sobrecarga?
+- A utilização de sobrecarga além de evitar a criação de novos métodos com a mesma funcionalidade, permite chamar o método de diferentes formas, além disso ainda possibilita o reaproveitamente de código (Ex: o init de 4 parâmetros chamando o init de 3 parâmetros)
+
+## Contrutores
+- Os construtores são métodos especiais usados para inicializar objetos quando eles são criados com new. Eles têm o mesmo nome da classe e não possuem tipo de retorno (nem mesmo void).
+
+##### Características:
+- São chamados automaticamente quando o objeto é instanciado (new Anime()).
+
+- Podem ser sobrecarregados (vários construtores com parâmetros diferentes, assim como os métodos).
+
+- Se não for declarado, o Java cria um construtor padrão vazio.
+
+###  Tipos de Construtores utilizados no código:
+### 1. Construtor Padrão (Sem Argumentos)7
+````java
+public Anime() {  
+    System.out.println("sem argumentos");  
+}  
+````
+#### - uso:
+````java
+Anime anime1 = new Anime(); // Imprime "sem argumentos"  
+````
+### 2. Construtor com 4 Parâmetros
+````java
+public Anime(String nome, String tipo, int episodios, String genero) {  
+    this(); // Chama o construtor padrão (DEVE SER A PRIMEIRA LINHA!)  
+    this.nome = nome;  
+    this.tipo = tipo;  
+    this.episodios = episodios;  
+    this.genero = genero;  
+}  
+````
+#### - uso:
+````java
+Anime anime2 = new Anime("Naruto", "Mangá", 100, "Shounen");  
+````
+### **3. Construtor com 5 Parâmetros**
+````java
+public Anime(String nome, String tipo, int episodios, String genero, String estudio) {  
+    this(nome, tipo, episodios, genero); // Reaproveita o construtor de 4 parâmetros  
+    this.estudio = estudio;  
+}   
+````
+#### - uso:
+````java
+Anime anime3 = new Anime("Naruto", "Mangá", 100, "Shounen", "Ghibli");  
+````
 
 

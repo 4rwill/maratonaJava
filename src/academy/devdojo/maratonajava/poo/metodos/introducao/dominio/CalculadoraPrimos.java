@@ -1,4 +1,4 @@
-package academy.devdojo.maratonajava.poo.metodos.dominio;
+package academy.devdojo.maratonajava.poo.metodos.introducao.dominio;
 
 public class CalculadoraPrimos {
     public boolean verificarPrimo(int num){
