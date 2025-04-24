@@ -1,4 +1,4 @@
-# Maratona Java
+****# Maratona Java
 Nesse repositório eu busco documentar meu aprendizado e evolução durante minha rotina de estudos da linguagem Java.
 
 Estou usando como meio de estudo o curso online de Java disponibilizado pelo canal [DevDojo](https://youtube.com/playlist?list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW&si=6YcxOOm5Ft0dyOFG).
@@ -462,4 +462,286 @@ public Anime(String nome, String tipo, int episodios, String genero, String estu
 Anime anime3 = new Anime("Naruto", "Mangá", 100, "Shounen", "Ghibli");  
 ````
 
+## Blocos de Inicialização, static, Métodos Estáticos e Bloco Estático
 
+### 1. Bloco de Inicialização
+
+- **O que é?** Um bloco de código que é executado antes do construtor, toda vez que um objeto é criado.
+
+- **Para que serve?** Inicializar atributos ou executar lógicas comuns a todos os construtores.
+
+````java
+public class Anime {  
+    private String nome;  
+    
+    // Bloco de inicialização (executa antes de qualquer construtor)  
+    {  
+        System.out.println("Dentro do bloco de inicialização");  
+        nome = "Naruto"; // Valor padrão  
+    }  
+
+    public Anime() {  
+        System.out.println("Dentro do construtor");  
+    }  
+}  
+
+// Teste:  
+Anime anime = new Anime();  
+/* Saída:  
+   Dentro do bloco de inicialização  
+   Dentro do construtor  
+*/  
+````
+
+### 2. Modificador static
+
+- **O que faz?** Indica que um atributo ou método pertence à classe, não a objetos individuais.
+
+- **Características:**
+  - Atributos static são compartilhados por todas as instâncias.
+
+  - Métodos static não podem acessar atributos não estáticos (pois não dependem de objetos).
+
+````java
+public class Contador {  
+    public static int total; // Atributo estático (compartilhado)  
+
+    public Contador() {  
+        total++; // Incrementa o contador toda vez que um objeto é criado  
+    }  
+
+    public static void imprimirTotal() { // Método estático  
+        System.out.println("Total de objetos: " + total);  
+    }  
+}  
+
+// Teste:  
+new Contador();  
+new Contador();  
+Contador.imprimirTotal(); // Saída: "Total de objetos: 2"  
+````
+
+### 3. Métodos Estáticos
+
+- **O que são?** Métodos que não precisam de instância para serem chamados.
+- **Uso comum:** Utilitários (ex.: Math.sqrt()).
+
+````java
+public class Calculadora {  
+    public static double somar(double a, double b) {  
+        return a + b;  
+    }  
+}  
+
+// Chamada sem criar objeto:  
+double resultado = Calculadora.somar(5, 3); // 8.0  
+````
+
+### 4. Bloco de Inicialização Estático
+
+- **O que é?** Um bloco que executa uma única vez, quando a classe é carregada na JVM.
+
+- **Para que serve?** Inicializar atributos estáticos.
+
+````java
+public class Config {  
+    public static String DATA_CARREGAMENTO;  
+
+    // Bloco estático (executa quando a classe é carregada)  
+    static {  
+        DATA_CARREGAMENTO = LocalDateTime.now().toString();  
+        System.out.println("Bloco estático executado!");  
+    }  
+}  
+
+// Teste:  
+System.out.println(Config.DATA_CARREGAMENTO);  
+// Saída: "Bloco estático executado!" + data atual  
+````
+
+### Dicas Finais
+
+- **static:** Use para constantes (public static final) ou métodos utilitários.
+
+- **Blocos estáticos:** Inicialize recursos pesados (ex.: conexão com banco de dados).
+
+- Evite abusar de static (pode dificultar testes e aumentar acoplamento).
+
+
+## Associação
+
+### 1. Arrays com Objetos
+- Arrays podem armazenar objetos, permitindo trabalhar com coleções de instâncias.
+
+````java
+public class Aluno {
+    private String nome;
+    
+    public Aluno(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+}
+
+public class Escola {
+    public static void main(String[] args) {
+        Aluno[] alunos = new Aluno[3];
+        alunos[0] = new Aluno("João");
+        alunos[1] = new Aluno("Maria");
+        alunos[2] = new Aluno("Pedro");
+        
+        for(Aluno aluno : alunos) {
+            System.out.println(aluno.getNome());
+        }
+    }
+}
+````
+
+### 2. Associação Unidirecional (Um para Muitos)
+- Uma classe contém referências a múltiplas instâncias de outra classe.
+#### Exemplo: Departamento → Funcionários
+````java
+public class Funcionario {
+    private String nome;
+    
+    public Funcionario(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+}
+
+public class Departamento {
+    private String nome;
+    private Funcionario[] funcionarios;
+    
+    public Departamento(String nome, Funcionario[] funcionarios) {
+        this.nome = nome;
+        this.funcionarios = funcionarios;
+    }
+    
+    public void listarFuncionarios() {
+        System.out.println("Departamento: " + nome);
+        for(Funcionario f : funcionarios) {
+            System.out.println("- " + f.getNome());
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Funcionario[] funcs = {
+            new Funcionario("Carlos"),
+            new Funcionario("Ana")
+        };
+        
+        Departamento rh = new Departamento("RH", funcs);
+        rh.listarFuncionarios();
+    }
+}
+````
+
+### 3. Associação Unidirecional (Muitos para Um)
+- Múltiplas instâncias de uma classe referenciam uma única instância de outra.
+#### Exemplo: Alunos → Escola
+
+````java
+public class Escola {
+    private String nome;
+    
+    public Escola(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+}
+
+public class Aluno {
+    private String nome;
+    private Escola escola; // Muitos alunos para uma escola
+    
+    public Aluno(String nome, Escola escola) {
+        this.nome = nome;
+        this.escola = escola;
+    }
+    
+    public void mostrarEscola() {
+        System.out.println(nome + " estuda em " + escola.getNome());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Escola etec = new Escola("ETEC Zona Leste");
+        
+        Aluno a1 = new Aluno("João", etec);
+        Aluno a2 = new Aluno("Maria", etec);
+        
+        a1.mostrarEscola();
+        a2.mostrarEscola();
+    }
+}
+````
+
+### 4. Associação Bidirecional
+- Duas classes se referenciam mutuamente.
+#### Exemplo: Cliente ↔ Conta Bancária
+
+````java
+public class Cliente {
+    private String nome;
+    private Conta conta;
+    
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+    
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+    
+    public void mostrarConta() {
+        System.out.println("Cliente: " + nome);
+        System.out.println("Saldo: R$" + conta.getSaldo());
+    }
+}
+
+public class Conta {
+    private double saldo;
+    private Cliente cliente;
+    
+    public Conta(double saldo) {
+        this.saldo = saldo;
+    }
+    
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+        cliente.setConta(this); // Estabelece a relação bidirecional
+    }
+    
+    public double getSaldo() {
+        return saldo;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cliente cli = new Cliente("José");
+        Conta cc = new Conta(1500.0);
+        
+        cc.setCliente(cli); // Liga os dois objetos
+        
+        cli.mostrarConta();
+    }
+}
+````
+
+### Resumo dos Tipos de Associação 
+![img_1.png](img_1.png)
