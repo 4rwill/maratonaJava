@@ -1,4 +1,4 @@
-# Maratona Java ☕ (teste)
+# Maratona Java ☕
 Nesse repositório eu busco documentar meu aprendizado e evolução durante minha rotina de estudos da linguagem Java.
 
 Estou usando como meio de estudo o curso online de Java disponibilizado pelo canal [DevDojo](https://youtube.com/playlist?list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW&si=6YcxOOm5Ft0dyOFG).

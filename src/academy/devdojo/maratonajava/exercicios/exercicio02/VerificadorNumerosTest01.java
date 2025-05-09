@@ -4,6 +4,6 @@ public class VerificadorNumerosTest01 {
     public static void main(String[] args) {
         VerificadorNumeros verificadorNumeros = new VerificadorNumeros();
 
-        verificadorNumeros.verificaTipo(0);
+        verificadorNumeros.verificaTipo(3);
     }
 }
