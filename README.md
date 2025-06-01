@@ -1,4 +1,4 @@
-# Maratona Java ☕
+********# Maratona Java ☕
 Nesse repositório eu busco documentar meu aprendizado e evolução durante minha rotina de estudos da linguagem Java.
 
 Estou usando como meio de estudo o curso online de Java disponibilizado pelo canal [DevDojo](https://youtube.com/playlist?list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW&si=6YcxOOm5Ft0dyOFG).
@@ -745,3 +745,95 @@ public class Main {
 
 ### Resumo dos Tipos de Associação 
 ![img_1.png](img_1.png)
+
+## 📌 Sobrescrita de Métodos (Override)
+
+  A sobrescrita permite que uma subclasse forneça uma implementação específica de um método já existente na superclasse.
+
+Regras da Sobrescrita:
+
+- O método deve ter a mesma assinatura (nome, parâmetros e tipo de retorno).
+
+- Não pode ter um modificador de acesso mais restritivo que o método original.
+
+- Usa a anotação @Override para garantir que está sobrescrevendo corretamente.
+
+Exemplo no Código:
+
+```java
+public class Anime {
+    private String nome;
+
+    @Override // Indica que está sobrescrevendo o método toString() da classe Object
+    public String toString() {
+        return this.nome; // Retorna o nome do anime em vez do endereço de memória
+    }
+}
+
+//Uso
+
+Anime anime = new Anime("Naruto");
+System.out.println(anime); // Saída: "Naruto" (invoca toString() sobrescrito)
+```
+
+### Por que sobrescrever toString()?
+
+- Por padrão, System.out.println(objeto) chama Object.toString(), que retorna o endereço de memória (ex: Anime@1a2b3c).   
+- Sobrescrevendo, você controla o que será exibido.
+
+
+## 🔧 Modificador final
+
+O modificador final pode ser aplicado a:
+
+- Variáveis: Transforma em constantes (valor não pode ser alterado).
+
+- Métodos: Impede a sobrescrita em subclasses.
+
+- Classes: Impede que a classe seja herdada.
+
+### 1. Variáveis final (Constantes)
+
+  - Convenção: Nome em MAIÚSCULAS com _.
+
+  - Devem ser inicializadas na declaração ou no construtor.
+   
+  
+- Características:
+
+    - VELOCIDADE_LIMITE é uma constante estática (acessível via Carro.VELOCIDADE_LIMITE).
+
+    - COMPRADOR é uma referência final:
+
+    - A referência não pode apontar para outro objeto (COMPRADOR = novoComprador; → Erro).
+
+    - Mas os atributos internos do objeto podem ser modificados (COMPRADOR.setNome("Novo Nome") → OK).
+
+
+### 2. Métodos final
+
+- Métodos marcados como final não podem ser sobrescritos.
+
+- Útil para garantir que um comportamento não seja alterado por subclasses.
+
+### 3. Classes final
+
+- Classes final não podem ser herdadas.
+
+- Exemplo clássico: String no Java.
+
+### 💡 Dicas Importantes
+
+#### final vs. Imutabilidade:
+
+- final garante que a referência não muda, mas não torna o objeto imutável.
+
+- Para imutabilidade, todos os campos do objeto também devem ser final e sem setters (ex: String).
+
+#### Quando usar final?
+
+- Em constantes (como VELOCIDADE_LIMITE).
+
+- Em métodos críticos que não devem ser alterados.
+
+- Em classes utilitárias (ex: Math).
