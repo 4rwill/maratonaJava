@@ -19,7 +19,6 @@ public class Cliente {
                 ", tipoCliente=" + tipoCliente.getRelatorio() +
                 ", tipoClienteInt=" + tipoCliente.getValor() +
                 ", tipoPagamento=" + tipoPagamento +
-                ", tipoPagamentoInt=" + tipoPagamento.getValor() +
                 '}';
     }
 }

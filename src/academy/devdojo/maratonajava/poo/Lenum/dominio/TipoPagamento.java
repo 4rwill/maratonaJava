@@ -1,16 +1,20 @@
 package academy.devdojo.maratonajava.poo.Lenum.dominio;
 
 public enum TipoPagamento {
-    DEBITO(1),
-    CREDITO(2);
+    DEBITO{
+        @Override
+        public double calcularDesconto(double valor) {
+            return valor * 0.1;
+        }
+    },
+    CREDITO{
+        @Override
+        public double calcularDesconto(double valor) {
+            return valor * 0.05;
+        }
+    };
 
-    public final int valor;
+    public abstract double calcularDesconto(double valor);
 
-    TipoPagamento(int valor) {
-        this.valor = valor;
-    }
 
-    public int getValor() {
-        return valor;
-    }
 }
