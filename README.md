@@ -2,7 +2,7 @@
 Nesse repositório eu busco documentar meu aprendizado e evolução durante minha rotina de estudos da linguagem Java.
 
 Estou usando como meio de estudo o curso online de Java disponibilizado pelo canal [DevDojo](https://youtube.com/playlist?list=PL62G310vn6nFIsOCC0H-C2infYgwm8SWW&si=6YcxOOm5Ft0dyOFG).
-****
+********
 ## Aula 01 (Compilação Java)
 Essa aula apresentou conceitos básicos da linguagem, principalmente como funcionava sua compilação.
 
@@ -837,3 +837,101 @@ O modificador final pode ser aplicado a:
 - Em métodos críticos que não devem ser alterados.
 
 - Em classes utilitárias (ex: Math).
+
+## 💡 Enums (Enumerações)
+
+- O que são? Enums são um tipo especial de classe em Java usados para definir uma coleção de constantes. Eles garantem que uma variável só possa conter um dos valores pré-definidos, tornando o código mais seguro e legível.
+
+- Por que usar? Evitam o uso de constantes "soltas" (como String ou int), que podem levar a erros de digitação e dificultam a manutenção.
+
+1. **Declaração Básica**
+
+   - A forma mais simples de criar um enum é listando seus valores.
+     ```java
+    
+     public enum DiaDaSemana {
+         SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO, DOMINGO;
+     }
+     ```
+
+2. **Enums com Atributos e Construtores**
+
+- Enums podem ter atributos, construtores e métodos, assim como classes normais. Isso é útil para associar dados a cada constante.
+
+- Regras:
+
+  - O construtor de um enum é sempre private.
+  - A declaração das constantes chama o construtor.
+
+```java
+public enum TipoPagamento {
+    // Cada constante chama o construtor com seus próprios valores
+    DEBITO(1, "Débito"),
+    CREDITO(2, "Crédito");
+
+    private final int valor;
+    private final String nomeRelatorio;
+
+    // Construtor é privado por padrão
+    TipoPagamento(int valor, String nomeRelatorio) {
+        this.valor = valor;
+        this.nomeRelatorio = nomeRelatorio;
+    }
+
+    // Getter para acessar o atributo
+    public int getValor() {
+        return valor;
+    }
+    
+    public String getNomeRelatorio() {
+        return nomeRelatorio;
+    }
+}
+```
+
+3. Métodos Importantes em Enums
+
+- Enums já vêm com alguns métodos estáticos úteis:
+
+  - **values():** Retorna um array com todas as constantes do enum. Ideal para iterações.
+
+  - **valueOf(String nome):** Retorna a constante do enum com o nome especificado.
+
+```java
+// Usando values() para iterar
+for (TipoPagamento tipo : TipoPagamento.values()) {
+    System.out.println(tipo.getNomeRelatorio());
+}
+// Saída:
+// Débito
+// Crédito
+
+// Usando valueOf() para buscar uma constante pelo nome
+String tipoBusca = "DEBITO";
+TipoPagamento tipoEncontrado = TipoPagamento.valueOf(tipoBusca);
+System.out.println("Encontrado: " + tipoEncontrado); // Saída: "Encontrado: DEBITO"
+```
+
+4. Métodos Abstratos e Sobrescrita
+
+- É possível declarar métodos abstratos em um enum, forçando cada constante a fornecer sua própria implementação.
+```java
+public enum TipoCliente {
+    PESSOA_FISICA {
+        @Override
+        public String getTipo() {
+            return "Pessoa Física";
+        }
+    },
+    PESSOA_JURIDICA {
+        @Override
+        public String getTipo() {
+            return "Pessoa Jurídica";
+        }
+    };
+
+    // Método abstrato que deve ser implementado por cada constante
+    public abstract String getTipo();
+}
+```
+
